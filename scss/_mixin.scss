@@ -1,0 +1,218 @@
+/* ----- SITE GRID MIXINS ----- */
+
+@mixin one-half {
+  width: $one-half;
+  margin-right: 3.2%;
+  box-sizing: border-box;
+}
+@mixin one-third {
+  width: $one-third;
+  margin-right: 2.3%;
+  box-sizing: border-box;
+}
+@mixin one-fourth {
+  width: $one-fourth;
+  margin-right: 1.8%;
+  box-sizing: border-box;
+}
+@mixin three-fourth {
+  width: $three-fourth;
+  margin-right: 2%;
+  box-sizing: border-box;
+}
+@mixin one-fifth {
+  width: $one-fifth;
+  margin-right: 5%;
+  box-sizing: border-box;
+}
+
+/* ----- MEDIA MIXIN ----- */
+
+@mixin respond-to($media) {
+  @if $media == widescreen {
+    @media  (min-width: $widescreen-desktop) { @content; }
+  } @else if $media == smallscreen {
+    @media (max-width: $smallscreen-desktop) { @content; }
+  } @else if $media == laptop {
+    @media (max-width: $laptop) { @content; }
+    } @else if $media == laptop-landscape {
+    @media (max-width: $laptop-landscape) { @content; }
+  } @else if $media == mobile-landscape {
+    @media (max-width: $mobile-landscape) { @content; }
+    }@else if $media == mobile {
+    @media (max-width: $mobile) { @content; }
+  }
+}
+
+/* ----- FONT MIXINS ----- */
+
+@mixin font($f-size, $line-height, $f-family, $f-weight, $f-color, $f-transform) {
+	font: {
+		size: $f-size;
+		family: $f-family;
+		weight: $f-weight;
+	}
+	color: $f-color;
+	text-transform: $f-transform;
+  line-height: $line-height;
+}
+
+/* ----- FLEX MIXINS ----- */
+
+@mixin flexbox($value: flex) {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  @if $value == inline-flex {
+  	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+  }
+}
+
+@mixin flex-wrap($value: nowrap) {
+  -webkit-flex-wrap: $value;
+  -moz-flex-wrap: $value;
+  @if $value == nowrap {
+    -ms-flex-wrap: none;
+  } @else {
+    -ms-flex-wrap: $value;
+  }
+  flex-wrap: $value;
+}
+
+/* ----- FLEX VALUES ----- */
+
+@mixin justify-content($value: flex-start) {
+  @if $value == flex-start {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+  } @else if $value == flex-end {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+  } @else if $value == space-between {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+  } @else if $value == space-around {
+    -ms-flex-pack: distribute;
+  } @else {
+    -webkit-box-pack: $value;
+    -ms-flex-pack: $value;
+  }
+  -webkit-justify-content: $value;
+  -moz-justify-content: $value;
+  justify-content: $value;
+}
+@mixin align-items($value: flex-start) {
+  @if $value == flex-start {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+  } @else if $value == flex-end {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+  } @else {
+    -webkit-box-pack: $value;
+    -ms-flex-pack: $value;
+  }
+	-webkit-align-items: $value;
+	align-items: $value;
+}
+@mixin align-self($value: flex-start) {
+  -ms-flex-item-align: $value;
+  align-self: $value;
+}
+@mixin flex-direction($value: row) {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  @if $value == column {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+   @if $value == column-reverse {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: column-reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+  }
+}
+
+/* ----- TRANSFORM ----- */
+
+@mixin translate($value1, $value2) {
+  -webkit-transform: translate($value1, $value2);
+  -ms-transform: translate($value1, $value2);
+  transform: translate($value1, $value2);
+}
+@mixin scale($value) {
+  -webkit-transform: scale($value);
+  -ms-transform: scale($value);
+  transform: scale($value);
+}
+@mixin rotate($value) {
+  -webkit-transform: rotate($value);
+  -ms-transform: rotate($value);
+  transform: rotate($value);
+}
+
+
+/* ----- BORDER MIXINS ----- */
+
+@mixin border($b-color, $b-radius, $b-width) {
+  border: $b-width solid $b-color;
+  border-radius: $b-radius;
+}
+
+/* ----- BUTTONS ----- */
+
+@mixin button-bright {
+	background: $bright-color1;
+  color: $main-color2;
+  @include border($bright-color1, 20px, 1px);
+  padding: 15px 25px;
+  transition: 0.3s;
+  cursor: pointer;
+  min-width: 150px;
+  margin: 0 auto;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.06rem;
+  line-height: 15px;
+  font-size: 14px;
+}
+@mixin button-bright-hover {
+	background: rgba($bright-color1, 0.4);
+	color: $main-color2;
+	@include border($bright-color1, 20px, 1px);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+/* ----- ICONS ----- */
+
+@mixin icon-background {
+	background: url('../images/.png') no-repeat;
+}
+@mixin icon {
+	content: '';
+	display: inline-block;
+	margin-right: 10px;
+	width: 30px;
+	height: 30px;
+	@include icon-background;
+}
+
+
+
+
+
+
